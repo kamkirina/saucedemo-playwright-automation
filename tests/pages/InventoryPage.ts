@@ -10,10 +10,10 @@ export class InventoryPage {
   }
 
   async addProductToCart(name: string) {
-    const locatorName = name.toLowerCase().replaceAll(" ", "-");
-    const product = this.page.getByTestId(`add-to-cart-${locatorName}`);
+    const product= this.page.getByTestId('inventory-item').filter({hasText: name})
+    const addToCartBtn = product.getByRole('button', {name: 'Add to cart', exact: true})
 
-    await product.click();
+    await addToCartBtn.click();
   }
 
   async openCart() {
